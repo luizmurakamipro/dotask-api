@@ -15,7 +15,7 @@ exports.getById = async (id) => {
 
 // Put
 exports.put = async (id, data) => {
-    const res = await User.findByIdAndUpdate(id, {
+    const res = await User.findOneAndUpdate(id, {
         $set:{
             name: data.name,
             email: data.email,
@@ -27,7 +27,7 @@ exports.put = async (id, data) => {
 
 // Delete
 exports.delete = async (id) => {
-    await User.findByIdAndRemove(id);
+    await User.findOneAndDelete(id);
 }
 
 exports.insertTask = async (uId, tId) => {
