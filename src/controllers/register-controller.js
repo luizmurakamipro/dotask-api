@@ -1,6 +1,6 @@
 const repository = require('../repositories/register-repository'); 
 
-exports.register = async (req, res) => {
+exports.register = async (req, res) => {    
     try {
         var user = await repository.post({
             name: req.body.name,
@@ -17,7 +17,7 @@ exports.register = async (req, res) => {
                 user: user
             });
         }
-    } catch (err) {
+    } catch (err) {        
         res.status(500).send({
             message: "Erro ao tentar registrar usuário",
             error: err
