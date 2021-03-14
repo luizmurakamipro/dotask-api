@@ -4,7 +4,7 @@ require("dotenv-safe").config();
 
 exports.authenticate = async (email, password) => {
     const user = await User.findOne({ email }).select('+password');
-    const id = user._id;
+        
     if (!user) {
         console.log("Usuário inexistente");
         throw ({
@@ -26,5 +26,7 @@ exports.authenticate = async (email, password) => {
             code: "Usuário não encontrado",
             message: "Senha incorreta"});  
     }
+    console.log('USER',user);
+    const id = user._id;
     return jwt.sign({id}, process.env.SECRET, {expiresIn:86400});
 }
