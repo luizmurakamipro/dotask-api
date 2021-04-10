@@ -2,12 +2,13 @@ const repository = require('../repositories/task-repository');
 
 exports.post = async (req, res) => {
     try {
-        await repository.post({
+        var task = await repository.post(req.userId, {
             date: req.body.date,
             description: req.body.description
         });
         res.status(201).send({
-            message: "Tarefa inserida com sucesso"
+            message: "Tarefa inserida com sucesso",
+            task: task
         });
     } catch (err) {
         res.status(500).send({
@@ -17,19 +18,19 @@ exports.post = async (req, res) => {
     }
 }
 
-exports.get = async (req, res) => {
-   try {
-       var data = await repository.get();
-       res.status(200).send({
-           data: data,
-           count: data.length
+exports.get = async (req, res) => { 
+    try {
+        var taskListData = await repository.get(req.userId);
+        res.status(200).send({
+            message: "Lista de Tarefa encontrada com sucesso",
+            taskList: taskListData
         });
-   } catch (err) {
-       res.status(500).send({
-           message: "Falha na requisição",
-           error: err
-       });
-   }
+    } catch (err) {
+        res.status(400).send({
+            message: "Erro ao encontrar lista de tarefa no usuario",
+            error: err
+        });
+    }
 }
 
 exports.getById = async (req, res) => {

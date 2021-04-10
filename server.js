@@ -8,18 +8,13 @@ const app = express();
 
 // Persistência
 mongoose.connect(
-	'mongodb+srv://dotask:dotask@dotask.x4hcs.mongodb.net/test',
+	'mongodb+srv://dotask:dotask@cluster0.x4xy4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 	{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false, useUnifiedTopology: true  }
 );
-/*
-'mongodb+srv://luizmurakami:' +
-		process.env.PASSWORD +
-		'@cluster0-usoip.mongodb.net/agrostation?retryWrites=true&w=majority',
-	{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: true }
-*/
+
 // Configurar a aplicação para usar o Body-Parser
-app.use(bodyParser.urlencoded([{ extended: false }]));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.use(cors());
 

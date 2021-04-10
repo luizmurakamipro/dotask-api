@@ -59,20 +59,3 @@ exports.delete = async (req, res) => {
         });
     }
 }
-
-exports.insertTask = async (req, res) => { 
-    try {
-        const { userId, taskId } = req.params;
-        var [ userData, taskData ] = await repository.insertTask(userId, taskId);
-        res.status(200).send({
-            message: "Tarefa inserida no usuário com sucesso",
-            user: userData,
-            task: taskData
-        });
-    } catch (err) {
-        res.status(400).send({
-            message: "Erro ao inserir tarefa no usuario",
-            error: err
-        });
-    }
-}

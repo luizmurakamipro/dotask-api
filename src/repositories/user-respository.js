@@ -29,13 +29,3 @@ exports.put = async (id, data) => {
 exports.delete = async (id) => {
     await User.findOneAndDelete(id);
 }
-
-exports.insertTask = async (uId, tId) => {
-    const task = await Task.findById(tId);
-    const user = await User.findById(uId);
-
-    user.taskList.push(task);
-    await user.save();
-
-    return [ user, task ];
-}

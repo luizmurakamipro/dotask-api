@@ -3,7 +3,7 @@ const router = express.Router(); // Interceptação das Rotas
 const taskController = require('../controllers/task-controller');
 const security = require('../services/authenticate-service');
 
-//router.use(security.authorize);
+router.use(security.authorize);
 
 // Post - Create
 router.post("/", taskController.post);

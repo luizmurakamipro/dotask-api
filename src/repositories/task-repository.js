@@ -1,9 +1,21 @@
 const Task = require('../app/models/task');
+const User = require('../app/models/user');
 
-// GetAll
-exports.get = async () => {
-    const res = await Task.find();
-    return res;
+// Get task list
+exports.get = async (userId) => {
+    const user = await User.findById(userId);
+    var taskList = [];
+
+    await Promise.all(user.taskList.map(async (taskId) => {
+        try {
+          var task = await Task.findById(taskId);  
+          taskList.push(task)
+        } catch (error) {
+          console.log('error'+ error);
+        }
+    }));
+
+    return taskList;
 }
 
 // GetById
@@ -13,9 +25,16 @@ exports.getById = async (id) => {
 }
 
 // Post
-exports.post = async (data) => {
+exports.post = async (userId, data) => {
     const task = new Task(data);
     await task.save();
+
+    const user = await User.findById(userId);
+
+    user.taskList.push(task);
+    await user.save();
+
+    return task;
 }
 
 // Put

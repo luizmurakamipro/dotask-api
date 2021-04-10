@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router(); // Interceptação das Rotas
 const userController = require('../controllers/user-controller');
+const security = require('../services/authenticate-service');
+
+router.use(security.authorize);
 
 // Get
 router.get('/', userController.get);
@@ -13,8 +16,5 @@ router.put('/:userId', userController.put);
 
 // Delete
 router.delete('/:userId', userController.delete);
-
-// Set Task in User
-router.post('/:userId/:taskId', userController.insertTask);
 
 module.exports = router;
