@@ -8,10 +8,10 @@ exports.get = async (userId) => {
 
     await Promise.all(user.taskList.map(async (taskId) => {
         try {
-          var task = await Task.findById(taskId);  
-          taskList.push(task)
+            var task = await Task.findById(taskId);
+            taskList.push(task)
         } catch (error) {
-          console.log('error'+ error);
+            console.log('error' + error);
         }
     }));
 
@@ -40,9 +40,10 @@ exports.post = async (userId, data) => {
 // Put
 exports.put = async (id, data) => {
     const res = await Task.findByIdAndUpdate(id, {
-        $set:{
+        $set: {
             date: data.date,
-            description: data.description
+            description: data.description,
+            check: data.check
         }
     });
     return res;

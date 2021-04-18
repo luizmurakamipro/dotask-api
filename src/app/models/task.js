@@ -10,6 +10,11 @@ var taskSchema = new Schema({
         type: String,
         required: true,
         default: ''
+    },
+    check: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
