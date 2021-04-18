@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router(); // Interceptação das Rotas
 const taskController = require('../controllers/task-controller');
-const security = require('../services/authenticate-service');
+const security = require('../middlewares/authenticate-middlerares');
 
 router.use(security.authorize);
 
