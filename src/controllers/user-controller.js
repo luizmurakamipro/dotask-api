@@ -1,24 +1,8 @@
 const repository = require('../repositories/user-respository'); 
 
 exports.get = async (req, res) => {
-   try {
-       var data = await repository.get();
-       res.status(200).send({
-            users: data,
-            count: data.length
-        });
-   } catch (err) {
-       res.status(500).send({
-           message: "Falha na requisição",
-           error: err
-       });
-   }
-}
-
-exports.getById = async (req, res) => {
     try {
-       const { userId } = req.params;
-       var data = await repository.getById(userId);
+       var data = await repository.get(req.userId);
        data.password = undefined;
        res.status(200).send(data);
    } catch (err) {

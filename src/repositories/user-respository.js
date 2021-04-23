@@ -1,14 +1,8 @@
 const User = require('../app/models/user');
 const Task = require('../app/models/task');
 
-// GetAll
-exports.get = async () => {
-    const res = await User.find();
-    return res;
-}
-
-// GetById
-exports.getById = async (id) => {
+// Get User
+exports.get = async (id) => {
     const res = await User.findById(id);
     return res;
 }

@@ -8,9 +8,6 @@ router.use(security.authorize);
 // Get
 router.get('/', userController.get);
 
-// Get by Id
-router.get('/:userId', userController.getById);
-
 // Put
 router.put('/:userId', userController.put);
 
