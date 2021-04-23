@@ -22,14 +22,10 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 
 // Rotas
-var indexRoute = require('./src/routes/index-route');
 var regRoute = require('./src/routes/register-route');
 var authRoute = require('./src/routes/authenticate-route');
 var taskRoute = require('./src/routes/task-route');
 var userRoute = require('./src/routes/user-route');
-
-// Rota para Index
-app.use('/api', indexRoute);
 
 // Rota para Registro
 app.use('/api/register', regRoute);
